@@ -1,0 +1,80 @@
+@use "../../scss/" as *;
+
+.movies-banner {
+  height: 20vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 22vh;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to top, $body-bg, rgba($black, 0));
+  }
+}
+
+.movies__Wrapper {
+  margin-top: 1rem;
+  padding: 0rem 5rem;
+
+  @include tablet {
+    padding: 0rem 2.5rem;
+  }
+  @include mobile {
+    padding: 0rem 1.5rem;
+  }
+}
+.movies {
+  &__header {
+    text-align: center;
+    padding: 1rem 2rem 2rem 2rem;
+    h2 {
+      text-transform: uppercase;
+    }
+  }
+
+  &__conteiner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 20px;
+    &__item {
+      &__image {
+        position: relative;
+        &::after {
+          content: "";
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          @include overlay;
+          border-radius: $border-radius;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          transition: 0.5s ease;
+        }
+        &:hover::after {
+          opacity: 1;
+        }
+
+        &:hover .cart-btn {
+          opacity: 0.8;
+        }
+        img {
+          border-radius: $border-radius;
+          width: 100%;
+        }
+      }
+
+      h3 {
+        margin-top: 10px;
+        font-size: 13px;
+        font-weight: 300;
+      }
+    }
+  }
+}

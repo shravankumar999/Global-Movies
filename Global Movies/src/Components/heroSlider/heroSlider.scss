@@ -1,0 +1,147 @@
+@use "../../scss/" as *;
+
+.hero-slider {
+  margin-bottom: 3rem 0;
+
+  @include tabletslider {
+    display: none;
+  }
+}
+
+.hero__slide__item {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include overlay();
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to top, $body-bg, rgba(black, 0));
+  }
+
+  &__conteiner {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    @include flex(center, center);
+  }
+}
+
+.hero__slide__item__content {
+  flex: 1.5;
+  padding: 0rem 0rem 0rem 5rem;
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 50px;
+    transition: 0.8s, 0.8s;
+  }
+  p {
+    margin-top: 20px;
+    font-size: 13px;
+    transition: 0.8s, 0.8s;
+    color: rgb(177, 177, 177);
+  }
+
+  h1,
+  p,
+  .slider-button {
+    opacity: 0;
+    transform: translateY(-120px);
+  }
+
+  &__info {
+    @include flex(center, space-between);
+    max-width: 23rem;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(-120px);
+    transition: 1s, 1s;
+    span {
+      padding: 5px;
+      background: $main-color;
+      text-transform: uppercase;
+      border-radius: $border-radius;
+      box-shadow: 0px 0px 6px 3px rgb(156, 4, 4);
+    }
+
+    h3 {
+      color: $white;
+      border: 1px solid $white;
+      padding: 6px;
+      background: transparent;
+      border-radius: 30px;
+      @include flex(center, center);
+    }
+  }
+}
+
+.active .hero__slide__item__content {
+  h1,
+  p,
+  .slider-button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &__info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__slide__item__image {
+  flex: 1;
+  @include flex(center, center);
+  img {
+    width: 300px;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    transform: scale(0);
+    transition: transform 0.7s ease;
+  }
+}
+
+.active .hero__slide__item__image {
+  img {
+    transform: scale(1);
+  }
+}
+
+.slider-button {
+  margin-top: 20px;
+  transition: 1.2s, 1.2s;
+  @include flex(unset, unset);
+  & .left {
+    margin-left: 20px;
+  }
+}
+
+.movieTrailer {
+  @include overlay();
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  @include flex(center, center);
+}
